@@ -10,10 +10,12 @@ import Profile from './pages/Profile';
 import PageNotFound from './pages/PageNotFound';
 import Login from './components/Login';
 import Register from './components/Register';
+import { TodoProvider } from './context/TodoContext';
 
 function App() {
   return (
     <BrowserRouter>
+    <TodoProvider>
     <Navigation />
     <Routes>
     <Route path="/" element={<Navigate to="/login"/>}></Route>
@@ -28,6 +30,7 @@ function App() {
           <Route path='*' element={<PageNotFound />}></Route>
 
     </Routes>
+    </TodoProvider>
     </BrowserRouter>
   );
 }
