@@ -1,0 +1,23 @@
+{
+    "users" : [
+        {
+            "username" :"Poonam",
+            "email" : "poonam@gmail.com",
+            "password" : "poonam",
+            "id" :1
+        },
+        {
+            "username" :"Poonam",
+            "email" : "poonam22@gmail.com",
+            "password" : "poonam",
+            "id" :2
+        },
+        {
+            "username" :"Happy",
+            "email" : "happy@gmail.com",
+            "password" : "happy12",
+            "id" :3
+        }
+    ],
+    "tasks" : []
+}
