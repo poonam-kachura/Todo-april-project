@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import  TodoContext from "../context/TodoContext";
 
 function Register(props) {
 
+    const {message,registerUser} = useContext(TodoContext);
+
     const [formData, setFormData]= useState(null);
-    const [message,setMessage] = useState("");
+    
 
     const handleChange = (e)=>{
         const { name, value } = e.target;
@@ -12,32 +15,11 @@ function Register(props) {
             [name]: value
         }))
     }
-
-    const onSubmit=async(e)=>{
-        const obj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(formData)
-        }
+// no need  of async (e)
+    const onSubmit=(e)=>{
         e.preventDefault();
-        // api call
+        registerUser(formData);
         
-        const checkUser = await fetch(`http://localhost:5000/users?email=${formData.email}`, {method:"GET"});
-        const user = await checkUser.json();
-        if(user.length > 0){
-            setMessage("user already exist");
-        }
-        else{
-            const response = await fetch(`http://localhost:5000/users`, obj);
-
-            if(response.ok){
-                setMessage("User Regsitered");
-            }else{
-                setMessage("something went wrong");
-            }
-        }
         
         
     }
