@@ -46,7 +46,7 @@ export const TodoProvider = ({children}) =>{
                 setTimeout(()=>{
                     navigate("/task-list");
 
-                })
+                },100)
                 
 
             }else{
@@ -73,7 +73,7 @@ export const TodoProvider = ({children}) =>{
                 setTimeout(()=>{
                     navigate("/task-list");
 
-                })
+                }, 300)
             }
             else{
                 setMessage("Email/password mismatch");
