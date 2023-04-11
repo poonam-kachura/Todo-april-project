@@ -1,7 +1,19 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { useContext } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import TodoContext from '../context/TodoContext';
 
 function Navigation(props) {
+
+  const {user,setUser} = useContext(TodoContext);
+
+  const navigate = useNavigate();
+
+  const logout=()=>{
+    localStorage.removeItem("user");
+    setUser(null);
+    navigate('/');
+  }
     return (
         <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -21,6 +33,8 @@ function Navigation(props) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            { !user ?
+            <>
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">
                 Home
@@ -31,6 +45,9 @@ function Navigation(props) {
                 About
               </Link>
             </li>
+            </> 
+            :
+            <>
             <li className="nav-item">
               <Link className="nav-link" to="/task-list">
                 Task List
@@ -43,7 +60,7 @@ function Navigation(props) {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/profile">
-                Profile
+                {user?.username}
               </Link>
             </li>
 
@@ -78,10 +95,13 @@ function Navigation(props) {
                 </li>
               </ul>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link disabled">Disabled</Link>
+            <li className="nav-item" onClick={logout}>
+              Logout
             </li>
+            </>
+            }
           </ul>
+          
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"

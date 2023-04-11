@@ -23,6 +23,18 @@
       "email": "poonamkachura2222@gmail.com",
       "password": "123456",
       "id": 4
+    },
+    {
+      "username": "Parveen",
+      "email": "parveen@gmail.com",
+      "password": "poonam",
+      "id": 5
+    },
+    {
+      "username": "Sangam",
+      "email": "sangam@gmail.com",
+      "password": "sangam",
+      "id": 6
     }
   ],
   "tasks": []
