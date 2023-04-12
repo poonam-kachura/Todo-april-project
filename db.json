@@ -37,5 +37,12 @@
       "id": 6
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "title": "Project",
+      "description": "Login Page",
+      "dueDate": "2023-04-26T11:20",
+      "id": 1
+    }
+  ]
 }

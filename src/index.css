@@ -10,3 +10,7 @@ body, html{
 body{
     background-color: #DDE7F9;
 }
+
+.bg-primary{
+    background-color: #111727 !important;
+}

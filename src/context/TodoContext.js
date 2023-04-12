@@ -84,6 +84,28 @@ export const TodoProvider = ({children}) =>{
         }
     }
 
+    // craete task function async helps ki next func block na ho bcz of no reason
+    //promise return anything in result
+    const createTask = async(formData)=>{
+        const obj = {
+            method :"POST",
+            headers : {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(formData)
+        }
+
+        const response = await fetch(`http://localhost:5000/tasks`,obj);
+        if(response.ok)
+        {
+            setMessage("Task created successfully");
+        }
+        else{
+            setMessage("Something went wrong");
+        }
+
+    }
+
     //useEffect
     useEffect(()=>{
         const localUser = localStorage.getItem("user");
@@ -100,7 +122,8 @@ export const TodoProvider = ({children}) =>{
             registerUser,
             loginUser,
             user,
-            setUser
+            setUser,
+            createTask
         }}>
             {children}
         </TodoContext.Provider>
