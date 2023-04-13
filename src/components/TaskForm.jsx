@@ -9,14 +9,15 @@ function TaskForm(props) {
 
     const [formData,setFormData] = useState();
 
-    const {message,setMessage,createTask} = useContext(TodoContext);
+    const {message,setMessage,createTask,user} = useContext(TodoContext);
 
 // prev store previous state like title:afs
     const handleChange =(e)=>{
         const {name,value} = e.target;
         setFormData((prev)=>({
             ...prev,
-            [name] :value
+            [name] :value,
+            UserId :user?.id
         }))
     }
 

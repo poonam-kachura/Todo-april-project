@@ -9,6 +9,11 @@ export const TodoProvider = ({children}) =>{
     const [message,setMessage] = useState("");
     const [user,setUser] = useState(null);
 
+    //states for getting tasks
+    const [allTasks,setAllTasks] = useState();
+    const [latestTask,setLatestTask] = useState();
+    const [recentTask,setRecentTask] = useState();
+
     const navigate = useNavigate();
 
     //register user
@@ -84,7 +89,7 @@ export const TodoProvider = ({children}) =>{
         }
     }
 
-    // craete task function async helps ki next func block na ho bcz of no reason
+    // craete task function async helps ki next func block na ho bcz of any reason
     //promise return anything in result
     const createTask = async(formData)=>{
         const obj = {
@@ -106,7 +111,28 @@ export const TodoProvider = ({children}) =>{
 
     }
 
-    //useEffect
+    //get tasks
+    const getTasks = async()=>{
+        const response = await fetch(`http://localhost:5000/tasks?userId=${user.id}`,{method:"GET"});
+        if(response.ok){
+            const tasks = await response.json();
+            setAllTasks(tasks);
+            const latest = tasks[tasks.length-1];
+            setLatestTask(latest);
+            const recent = tasks.slice(-3);
+            setRecentTask(recent);
+        }
+    }
+
+    useEffect(()=>{
+        if(user != null){
+            getTasks();
+        }
+        
+    },[user])
+    //dependencies me jb change hoga tb useEffect fir se chlega
+
+    //useEffect for getting name 
     useEffect(()=>{
         const localUser = localStorage.getItem("user");
         const currentUser = JSON.parse(localUser);
@@ -123,7 +149,10 @@ export const TodoProvider = ({children}) =>{
             loginUser,
             user,
             setUser,
-            createTask
+            createTask,
+            allTasks,
+            latestTask,
+            recentTask
         }}>
             {children}
         </TodoContext.Provider>
